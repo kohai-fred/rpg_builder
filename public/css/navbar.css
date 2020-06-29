@@ -4,10 +4,12 @@
     margin: 0;
     list-style: none;
     text-decoration: none;
+/*    background: rgba(0, 0, 0, 0.6);*/
+/*    backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
 }
-body {
-    font-family: 'Roboto', sans-serif;
-}
+/*body {*/
+/*    font-family: 'Roboto', sans-serif;*/
+/*}*/
 .sidebar {
     position: fixed;
     left: -250px;
@@ -15,8 +17,18 @@ body {
     height: 100%;
     /*background: #042331;*/
     /*background-color: rgba(0,0,0,0.8);*/
-    background: #262626;
+    /*background: #262626;*/
+    background: url(../images/background/fire.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(23, 23, 23, 0.4);
+    /*backdrop-filter: grayscale(1) contrast(3) blur(1px);*/
     transition: all .5s ease;
+}
+.opaque{
+    background-color: rgba(0, 0, 0, 0.82);
+    height: 100%;
+
 }
 .sidebar header {
     font-size: 22px;
@@ -53,12 +65,13 @@ body {
     display: none;
 }
 label #btn,label #cancel{
-    position: absolute;
+    /*position: absolute;*/
     /*background: #042331;*/
     border-radius: 3px;
     cursor: pointer;
 }
 label #btn{
+    position: absolute;
     left: 40px;
     top: 25px;
     font-size: 35px;
@@ -90,10 +103,13 @@ label #cancel{
 #check:checked ~ section{
     margin-left: 250px;
 }
-section{
-    background: url(../images/wallpaper_candle.jpg) no-repeat;
+.main{
+    background: url(../images/background/wallpaper_candle.jpg) no-repeat;
     background-position: center;
     background-size: cover;
     height: 100vh;
     transition: all .5s;
 }
+
+/**************************************/
+

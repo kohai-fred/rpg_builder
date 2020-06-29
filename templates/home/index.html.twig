@@ -1,28 +1,90 @@
 {% extends 'base.html.twig' %}
-
+        {% block stylesheets %}
+{#            <link rel="stylesheet" href="{{ asset('css/modal.css') }}">#}
+            <link rel="stylesheet" href="{{ asset('css/button.css') }}">
+        {% endblock %}
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-    <div class="container text-center">
-        <h1 class="no-mt">Ici page d'accueil</h1>
 
-        <p>
-            Ici tous le blabla de la description de "l'appli"
-        </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laboriosam laborum sed! Aliquid, atque culpa, dolor dolorem eius eveniet fugit ipsam iste odit quae ratione rem repellendus totam vero voluptatem.
-        </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laboriosam laborum sed! Aliquid, atque culpa, dolor dolorem eius eveniet fugit ipsam iste odit quae ratione rem repellendus totam vero voluptatem.
-        </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laboriosam laborum sed! Aliquid, atque culpa, dolor dolorem eius eveniet fugit ipsam iste odit quae ratione rem repellendus totam vero voluptatem.
-        </p>
+    <div class="container">
 
-        <a href="{{ 'C:/xampp/htdocs/side_project/01-jdr_symfony/src/Controller/HomeController.php'|file_link(0) }}">Inscription</a></code></li>
-        <a href="{{ 'C:/xampp/htdocs/side_project/01-jdr_symfony/templates/home/index.html.twig'|file_link(0) }}">Connection</a></code></li>
+{#    {% for message in app.flashes('register_success')%}#}
+{#        <p class="btn btn-red">{{ message }}</p>#}
+{#    {% endfor %}#}
 
+        <div class="home flex">
+
+            <div class="title">
+                <h1 class="no-mt text-center">Ici page d'accueil</h1>
+            </div>
+
+            <div class="home-text">
+                <p>
+                    Ici tous le blabla de la description de "l'appli"
+                </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laboriosam laborum sed! Aliquid, atque culpa, dolor dolorem eius eveniet fugit ipsam iste odit quae ratione rem repellendus totam vero voluptatem.
+                </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laboriosam laborum sed! Aliquid, atque culpa, dolor dolorem eius eveniet fugit ipsam iste odit quae ratione rem repellendus totam vero voluptatem.
+                </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laboriosam laborum sed! Aliquid, atque culpa, dolor dolorem eius eveniet fugit ipsam iste odit quae ratione rem repellendus totam vero voluptatem.
+                </p>
+            </div>
+
+            <div class="home-btn flex">
+                <a class="btn btn-green" href="{{ path('app_register') }}">Inscription</a>
+                <a class="btn btn-blue" href="{{ path('app_login') }}">Connection</a>
+            </div>
+
+        </div>
     </div>
+{#Test Modal#}
+
+{#            <div class="info">#}
+{#                <div class="buttons">#}
+{#                    <p>#}
+{#                        <a href="" data-modal="#modal" class="modal__trigger">Inscription</a>#}
+{#                        <a href="" data-modal="#modal2" class="modal__trigger">Modal 2</a>#}
+{#                        <a href="" data-modal="#modal3" class="modal__trigger">Modal 3</a>#}
+{#                    </p>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% embed 'incs/modal.html.twig'%}#}
+{#            {% block bodyModal %}#}
+{#                    {% for flashError in app.flashes('verify_email_error') %}#}
+{#                    <div class="alert alert-danger" role="alert">{{ flashError }}</div>#}
+{#                    {% endfor %}#}
+
+{#                    <div class="container text-center">#}
+{#                    <h1 class="no-mt">Inscription</h1>#}
+
+{#                    {{ form_start(registrationForm) }}#}
+{#                        {{ form_row(registrationForm.username, {#}
+{#                            label: 'Pseudo'#}
+{#                        }) }}#}
+{#                        {{ form_row(registrationForm.plainPassword, {#}
+{#                            label: 'Mot de passe'#}
+{#                        }) }}#}
+{#                        {{ form_row(registrationForm.email)}}#}
+{#                        {{ form_row(registrationForm.firstname, {#}
+{#                            label: 'Prénom'#}
+{#                        }) }}#}
+{#                        {{ form_row(registrationForm.lastname, {#}
+{#                            label: 'Nom'#}
+{#                        }) }}#}
+
+{#                        {{ form_row(registrationForm.agreeTerms) }}#}
+
+{#                        <button type="submit" class="btn">S'inscrire</button>#}
+{#                    {{ form_end(registrationForm) }}#}
+{#                    </div>#}
+{#            {% endblock %}#}
+{#        {% endembed %}#}
+{#    </div>#}
+
+{#    {% block javascripts %}#}
+{#        <script src="{{ asset('js/modal.js') }}"></script>#}
+{#    {% endblock %}#}
+
 {% endblock %}

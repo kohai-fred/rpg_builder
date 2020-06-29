@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="form-container">
+
+{#        <div class="">#}
+
+            <h1 class="no-mt text-center">Inscription</h1>
+
+            {{ form_start(registrationForm) }}
+            <div>
+                {{ form_errors(registrationForm) }}
+            </div>
+            <div class="form-item">
+                {{ form_label(registrationForm, "Pseudo") }}
+                {{ form(registrationForm.username, {
+                    label: 'Nom d\utilisateur',
+                    'attr' : {
+                        'placeholder' : 'Nom d\utilisateur...'
+                    }
+                }) }}
+            </div>
+
+            <div class="form-item">
+                {{ form_label(registrationForm, "Email") }}
+                {{ form(registrationForm.email, {
+                    label: 'Email',
+                    'attr' : {
+                        'placeholder' : 'Votre adresse email...'
+                    }
+                }) }}
+            </div>
+
+            <div class="form-item">
+                {{ form_label(registrationForm, "Prénom") }}
+                {{ form(registrationForm.firstname, {
+                    label: 'Prénom',
+                    'attr' : {
+                        'placeholder' : 'Votre prénom...'
+                    }
+                }) }}
+            </div>
+
+            <div class="form-item">
+                {{ form_label(registrationForm, "Nom") }}
+                {{ form(registrationForm.lastname, {
+                    label: 'Nom',
+                    'attr' : {
+                        'placeholder' : 'Votre nom...'
+                    }
+                }) }}
+            </div>
+
+            <div class="form-item">
+                {{ form_label(registrationForm, "Mot de passe") }}
+                {{ form(registrationForm.plainPassword, {
+                    label: 'Mot de passe',
+                    'attr' : {
+                        'placeholder' : 'Mot de passe !'
+                    }
+                }) }}
+            </div>
+            <div class="form-item">
+                {{ form_row(registrationForm.agreeTerms) }}
+
+                <button type="submit" class="btn btn-green justify-content-center">S'inscrire</button>
+            </div>
+            {{ form_end(registrationForm) }}
+{#        </div>#}
+    </div>
+{% endblock %}

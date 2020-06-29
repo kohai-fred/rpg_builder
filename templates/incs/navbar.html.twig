@@ -1,0 +1,38 @@
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+{#    <i class="fas fa-times" id="cancel"></i>#}
+</label>
+<div class="sidebar">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <header>
+            {{ app.user.username }}
+            <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt red"></i></a>
+            <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fas fa-times" id="cancel"></i>
+            </label>
+        </header>
+    {% else %}
+        <header>My App</header>
+        <input type="checkbox" id="check">
+        <label for="check">
+            <i class="fas fa-times" id="cancel"></i>
+        </label>
+    {% endif %}
+    <div class="opaque">
+        <ul>
+            <li class="nav-hover"><a href="{{ path('home') }}"><i class="fas fa-home"></i>Accueil</a></li>
+            <li class="nav-hover"><a href="#"><i class="fas fa-link"></i>Shortcuts</a></li>
+            <li class="nav-hover"><a href="#"><i class="fas fa-stream"></i>Overview</a></li>
+            <li class="nav-hover"><a href="#"><i class="fas fa-calendar-week"></i>Events</a></li>
+            <li class="nav-hover"><a href="#"><i class="far fa-question-circle"></i>About</a></li>
+            <li class="nav-hover"><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+            <li class="nav-hover"><a href="#"><i class="far fa-envelope"></i>Contact</a></li>
+        </ul>
+    </div>
+</div>
+{#<section>#}
+{#    {% block body %}{% endblock %}#}
+{#    {% block javascripts %}{% endblock %}#}
+{#</section>#}
