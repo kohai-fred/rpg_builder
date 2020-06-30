@@ -13,7 +13,13 @@
         <div class="home flex">
 
             <div class="title">
-                <h1 class="no-mt text-center">Ici page d'accueil</h1>
+                <h1 class="no-mt text-center">
+                    {% if not app.user or not app.user.id %}
+                            Ici page d'accueil
+                    {% else %}
+                            Bienvenue {{ app.user.username }}
+                    {% endif %}
+                </h1>
             </div>
 
             <div class="home-text">
@@ -27,12 +33,12 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laboriosam laborum sed! Aliquid, atque culpa, dolor dolorem eius eveniet fugit ipsam iste odit quae ratione rem repellendus totam vero voluptatem.
                 </p>
             </div>
-
-            <div class="home-btn flex">
-                <a class="btn btn-green" href="{{ path('app_register') }}">Inscription</a>
-                <a class="btn btn-blue" href="{{ path('app_login') }}">Connection</a>
-            </div>
-
+            {% if not app.user or not app.user.id %}
+                <div class="home-btn flex">
+                    <a class="btn btn-green" href="{{ path('app_register') }}">Inscription</a>
+                    <a class="btn btn-blue" href="{{ path('app_login') }}">Connection</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 {#Test Modal#}

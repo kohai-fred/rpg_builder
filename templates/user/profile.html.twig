@@ -13,7 +13,7 @@
         <P><i class="far fa-envelope"></i> : {{ user.email }}</P>
         <div>
             <a href="{{ path('edit_user', {id:user.id}) }}" class="btn btn-green"><i class="fas fa-edit"></i></a>
-            <a href="#" class="btn btn-blue"><i class="fas fa-user-secret"></i></a>
+            <a href="{{ path('change_password') }}" class="btn btn-blue"><i class="fas fa-user-secret"></i></a>
             <a href="#" class="btn btn-red" onclick="if(confirm('Êtes-vous sûr(e) de vouloir supprimer votre compte ?')) window.location.href='{{ path('delete_user', {id:user.id}) }}';"><i class="fas fa-trash"></i></a>
         </div>
     </div>
