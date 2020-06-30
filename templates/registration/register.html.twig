@@ -56,20 +56,27 @@
                     }
                 }) }}
             </div>
-
-            <div class="form-item">
-                {{ form_label(registrationForm, "Mot de passe") }}
-                {{ form(registrationForm.plainPassword, {
-                    label: 'Mot de passe',
-                    'attr' : {
-                        'placeholder' : 'Mot de passe !'
-                    }
-                }) }}
-            </div>
+            {% if not app.user or not app.user.id %}
+                <div class="form-item">
+                    {{ form_label(registrationForm, "Mot de passe") }}
+                    {{ form(registrationForm.plainPassword, {
+                        label: 'Mot de passe',
+                        'attr' : {
+                            'placeholder' : 'Mot de passe !'
+                        }
+                    }) }}
+                </div>
+            {% endif %}
             <div class="form-item">
                 {{ form_row(registrationForm.agreeTerms) }}
 
-                <button type="submit" class="btn btn-green justify-content-center">S'inscrire</button>
+                <button type="submit" class="btn btn-green justify-content-center">
+                    {% if not app.user or not app.user.id %}
+                        S'inscrire
+                    {% else %}
+                        Modifier
+                    {% endif %}
+                </button>
             </div>
             {{ form_end(registrationForm) }}
 {#        </div>#}

@@ -14,11 +14,13 @@
             </label>
         </header>
     {% else %}
-        <header>My App</header>
-        <input type="checkbox" id="check">
-        <label for="check">
-            <i class="fas fa-times" id="cancel"></i>
-        </label>
+        <header>
+            <a href="{{ path('home') }}" class="a-no-deco">RPG Builder</a>
+            <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fas fa-times" id="cancel"></i>
+            </label>
+        </header>
     {% endif %}
     <div class="opaque">
         <ul>
@@ -29,6 +31,12 @@
             <li class="nav-hover"><a href="#"><i class="far fa-question-circle"></i>About</a></li>
             <li class="nav-hover"><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
             <li class="nav-hover"><a href="#"><i class="far fa-envelope"></i>Contact</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-hover"><a href="{{ path('profile') }}"><i class="fas fa-user"></i>Profil</a></li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-hover"><a href="{{ path('admin') }}"><i class="fas fa-users-cog"></i>Admin </a> </li>
+            {% endif %}
         </ul>
     </div>
 </div>

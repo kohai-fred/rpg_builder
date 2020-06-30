@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Profil | {{ user.username }}{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('register_success')%}
+        <p class="btn btn-green">{{ message }}</p>
+    {% endfor %}
+
+    <div class="container">
+        <h1 class="text-center">Bonjour, {{ user.firstname }} {{ user.lastname }}</h1>
+        <P><i class="far fa-user"></i> : {{ user.username }}</P>
+        <P><i class="far fa-envelope"></i> : {{ user.email }}</P>
+        <div>
+            <a href="{{ path('edit_user', {id:user.id}) }}" class="btn btn-green"><i class="fas fa-edit"></i></a>
+            <a href="#" class="btn btn-blue"><i class="fas fa-user-secret"></i></a>
+            <a href="#" class="btn btn-red" onclick="if(confirm('Êtes-vous sûr(e) de vouloir supprimer votre compte ?')) window.location.href='{{ path('delete_user', {id:user.id}) }}';"><i class="fas fa-trash"></i></a>
+        </div>
+    </div>
+
+
+
+{% endblock %}

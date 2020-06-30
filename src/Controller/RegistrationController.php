@@ -7,6 +7,7 @@ use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,11 +18,24 @@ class RegistrationController extends AbstractController
 {
     /**
      * @Route("/inscription", name="app_register")
+     * @Route("/inscription/edit/{id<\d+>}", name="edit_user")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator, EntityManagerInterface $ojectManager): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator, EntityManagerInterface $objectManager, User $user = null): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        if($user === null){
+            $user = new User();
+        }
+
+        $form = $this->createForm(RegistrationFormType::class, $user, [
+            'validation_groups' => [
+                'Default',
+                ($user->getId() ? "Modification" : "Inscription")
+            ]
+        ]);
+//        $form->add('submit', SubmitType::class,[
+//            'label' => ($user->getId() ? "Editer" : "Ajouter") . " votre profil"
+//        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -32,6 +46,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+//            $user->setPassword($form->get('plainPassword')->getData());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -45,9 +60,11 @@ class RegistrationController extends AbstractController
                 'main' // firewall name in security.yaml
             );
 
-
+            $objectManager->persist($user);
+            $objectManager->flush();
+            return $this->redirectToRoute('home');
         }
-        $this->addFlash('register_success', 'Bravo inscription réussi !');
+//        $this->addFlash('register_success', 'Bravo inscription réussi !');
 
         return $this->render('registration/register.html.twig',  [
             'registrationForm' => $form->createView(),

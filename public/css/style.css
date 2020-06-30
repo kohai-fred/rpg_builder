@@ -132,6 +132,9 @@
 .col{
     flex-direction: column;
 }
+.a-no-deco{
+    text-decoration:none;
+}
 
 /****************************************************/
 /*                     BUTTONS                      */
