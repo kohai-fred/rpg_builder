@@ -161,4 +161,14 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getRolesPretty()
+    {
+        if(in_array('ROLE_ADMIN', $this->roles)){
+            return 'Administrateur';
+        } else {
+            return 'Utilisateur';
+        }
+    }
+
 }
