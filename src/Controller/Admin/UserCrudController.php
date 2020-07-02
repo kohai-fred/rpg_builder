@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
@@ -13,6 +14,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 class UserCrudController extends AbstractCrudController
 {
@@ -24,8 +29,8 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('User')
-            ->setEntityLabelInPlural('Users')
+            ->setEntityLabelInSingular('Utilisateur')
+            ->setEntityLabelInPlural('Utilisateurs')
             ->setSearchFields(['id', 'username', 'roles', 'firstname', 'lastname', 'email']);
     }
 
@@ -33,14 +38,14 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $id = IdField::new('id');
-        $username = TextField::new('username');
-        $firstname = TextField::new('firstname');
-        $lastname = TextField::new('lastname');
+        $username = TextField::new('username', 'Pseudo');
+        $firstname = TextField::new('firstname', 'Prénom');
+        $lastname = TextField::new('lastname', 'Nom');
         $email = EmailField::new('email');
-        $roles = ChoiceField::new('roles')->autocomplete()->allowMultipleChoices()->setChoices(["User" => "ROLE_USER", "Admin" => "ROLE_ADMIN"]);
+        $roles = ChoiceField::new('roles')->autocomplete()->allowMultipleChoices()->setChoices(["Utilisateur" => "ROLE_USER", "Administrateur" => "ROLE_ADMIN"]);
 
-        //I don't know for algo in password_hash...
-//        $password = TextField::new('password')->setFormType(password_hash('MotDePasse123', 'PASSWORD_ARGON2I'));
+        //Could not load type...: class does not exist
+//        $password = TextField::new('password', 'Mot de passe')->setFormType(password_hash('MotDePasse123', PASSWORD_ARGON2I));
 
         if (Crud::PAGE_INDEX === $pageName){
             return [$id, $username, $firstname, $lastname, $email, $roles];
@@ -48,6 +53,7 @@ class UserCrudController extends AbstractCrudController
 
         return [
             $username, $firstname, $lastname, $email, $roles,
+//            $password
         ];
 
 //        return [

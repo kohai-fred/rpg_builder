@@ -9,11 +9,9 @@
 
     <div class="form-container">
 
-{#        <div class="">#}
+        <h1 class="no-mt text-center">Inscription</h1>
 
-            <h1 class="no-mt text-center">Inscription</h1>
-
-            {{ form_start(registrationForm) }}
+        {{ form_start(registrationForm) }}
             <div>
                 {{ form_errors(registrationForm) }}
             </div>
@@ -78,7 +76,7 @@
                     {% endif %}
                 </button>
             </div>
-            {{ form_end(registrationForm) }}
-{#        </div>#}
+
+        {{ form_end(registrationForm) }}
     </div>
 {% endblock %}

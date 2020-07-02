@@ -23,7 +23,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('<a href="/">Rpg Builder</a>');
+            ->setTitle('<a href="admin">Rpg Builder</a>');
     }
 
     public function configureMenuItems(): iterable
